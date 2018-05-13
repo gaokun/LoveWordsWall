@@ -78,6 +78,8 @@
       listener: function (resp) {
         if (typeof resp === 'string' && resp.indexOf('address: invalid address format') === 0) {
           console.error('no this contract');
+          btnGet.removeAttr('disabled');
+          btnGet.html('刷新留言墙');
         }
         else {
           console.log(resp, resp.result);
