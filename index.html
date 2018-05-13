@@ -34,10 +34,11 @@
             </div>
             <input id="value" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
         </div>
-        <button type="button" class="btn btn-success" onclick="set()">提交</button>
+        <button type="button" id="btn-submit" class="btn btn-success" onclick="set()">提交</button>
 
         <div class="record-box">
-            <button type="button" class="btn btn-primary" onclick="get()">刷新留言墙</button>
+            <button type="button" id="btn-get" class="btn btn-primary" onclick="get()">刷新留言墙</button>
+            <span class="hint">(只保留最新10条)</span>
             <div class="records"></div>
         </div>
     </div>
@@ -66,6 +67,9 @@
   var nebPay = new NebPay();
 
   function get(cb) {
+    var btnGet = $('#btn-get');
+    btnGet.attr('disabled','true');
+    btnGet.html('Loading...');
     var to = dappAddress;
     var value = "0";
     var callFunction = "getRecords";
@@ -92,6 +96,8 @@
           `;
             recordsDom.append($(item));
           }
+          btnGet.removeAttr('disabled');
+          btnGet.html('刷新留言墙');
           cb && cb();
         }
       }

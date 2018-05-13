@@ -16,7 +16,7 @@ LoveWordsWallContract.prototype = {
       throw new Error('Length Limitation: name<20, words<1000');
     }
     var records = this.repo.get('records');
-    if (records.length >= 3) {
+    if (records.length >= 10) {
       records.pop();
     }
     var record = {
