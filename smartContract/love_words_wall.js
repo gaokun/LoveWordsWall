@@ -20,7 +20,7 @@ LoveWordsWallContract.prototype = {
       records.pop();
     }
     var record = {
-      name, words, address: Blockchain.transaction.from
+      name, words, address: Blockchain.transaction.from, createon: Date.now()
     };
     records.unshift(record);
     this.repo.set('records', records);
