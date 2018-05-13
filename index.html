@@ -76,10 +76,10 @@
     var callArgs = null;
     nebPay.simulateCall(to, value, callFunction, callArgs, {
       listener: function (resp) {
+        btnGet.removeAttr('disabled');
+        btnGet.html('刷新留言墙');
         if (typeof resp === 'string' && resp.indexOf('address: invalid address format') === 0) {
           console.error('no this contract');
-          btnGet.removeAttr('disabled');
-          btnGet.html('刷新留言墙');
         }
         else {
           console.log(resp, resp.result);
@@ -98,8 +98,6 @@
           `;
             recordsDom.append($(item));
           }
-          btnGet.removeAttr('disabled');
-          btnGet.html('刷新留言墙');
           cb && cb();
         }
       }
@@ -122,6 +120,8 @@
   function cbPush(resp) {
     console.log("response of push: " + JSON.stringify(resp), resp)
   }
+
+  setTimeout(get, 2000);
 </script>
 </body>
 </html>
